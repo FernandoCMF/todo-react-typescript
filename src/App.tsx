@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {useState} from 'react';
+import * as C from './App.style';
+import {Item} from './types/Item'
+import { ListItem } from './components/ListItem';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+const App = () => {
+  const [list, setList] = useState<Item[]>([
+    {id: 1, name: 'Comprar pao na padaria', done: false},
+    {id: 2, name: 'Comprar bolo na padaria', done: false}
+
+  ]);
+
+  return(
+    <C.Container>
+      <C.Content>
+        <C.Header>Lista de Tarefas</C.Header>
+
+        {list.map((item, index) => (
+            <ListItem key={index} item={item}/>
+          ))}
+
+      </C.Content>
+    </C.Container>
   );
 }
 
